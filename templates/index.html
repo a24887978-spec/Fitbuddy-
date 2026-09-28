@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FitBuddy - AI Fitness Assistant</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f4f7f5;
+            color: #17231c;
+            min-height: 100vh;
+        }
+
+        .navbar {
+            width: 100%;
+            padding: 20px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: white;
+            border-bottom: 1px solid #e6ebe7;
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: 800;
+            color: #1d8f55;
+        }
+
+        .logo span {
+            color: #17231c;
+        }
+
+        .nav-text {
+            color: #66736b;
+            font-size: 14px;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 55px 20px 35px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: #e4f6eb;
+            color: #1d8f55;
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 18px;
+        }
+
+        .hero h1 {
+            font-size: 45px;
+            line-height: 1.1;
+            margin-bottom: 15px;
+        }
+
+        .hero h1 span {
+            color: #1d8f55;
+        }
+
+        .hero p {
+            max-width: 650px;
+            margin: auto;
+            color: #69766e;
+            font-size: 17px;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 850px;
+            margin: 10px auto 60px;
+        }
+
+        .form-card {
+            background: white;
+            border-radius: 22px;
+            padding: 35px;
+            box-shadow: 0 12px 35px rgba(25, 55, 38, 0.08);
+            border: 1px solid #e7eee9;
+        }
+
+        .section-title {
+            margin-bottom: 25px;
+        }
+
+        .section-title h2 {
+            font-size: 23px;
+            margin-bottom: 6px;
+        }
+
+        .section-title p {
+            color: #758078;
+            font-size: 14px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #34423a;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 13px 14px;
+            border: 1px solid #d8e1db;
+            border-radius: 10px;
+            font-size: 14px;
+            outline: none;
+            background: #fbfcfb;
+            color: #253129;
+        }
+
+        input:focus,
+        select:focus {
+            border-color: #1d8f55;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(29, 143, 85, 0.10);
+        }
+
+        .button-area {
+            margin-top: 28px;
+        }
+
+        .generate-btn {
+            width: 100%;
+            border: none;
+            border-radius: 12px;
+            padding: 15px;
+            background: #1d8f55;
+            color: white;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .generate-btn:hover {
+            background: #167645;
+        }
+
+        .button-note {
+            text-align: center;
+            margin-top: 12px;
+            color: #89938d;
+            font-size: 12px;
+        }
+
+        .features {
+            width: 90%;
+            max-width: 850px;
+            margin: 0 auto 70px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        .feature-card {
+            background: white;
+            border: 1px solid #e7eee9;
+            border-radius: 16px;
+            padding: 22px;
+            text-align: center;
+        }
+
+        .feature-icon {
+            font-size: 27px;
+            margin-bottom: 10px;
+        }
+
+        .feature-card h3 {
+            font-size: 15px;
+            margin-bottom: 7px;
+        }
+
+        .feature-card p {
+            color: #78837d;
+            font-size: 12px;
+            line-height: 1.5;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            color: #89938d;
+            font-size: 12px;
+            border-top: 1px solid #e6ebe7;
+            background: white;
+        }
+
+        @media (max-width: 700px) {
+
+            .hero h1 {
+                font-size: 34px;
+            }
+
+            .form-card {
+                padding: 24px 20px;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-text {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar">
+
+        <div class="logo">
+            Fit<span>Buddy</span>
+        </div>
+
+        <div class="nav-text">
+            Your AI Fitness Assistant
+        </div>
+
+    </nav>
+
+
+    <section class="hero">
+
+        <div class="hero-badge">
+            ✨ AI-Powered Fitness Planning
+        </div>
+
+        <h1>
+            Build Your <span>Perfect</span><br>
+            Fitness Plan
+        </h1>
+
+        <p>
+            Tell us about yourself and your fitness goal.
+            FitBuddy will create a personalized 7-day workout
+            plan designed for you.
+        </p>
+
+    </section>
+
+
+    <main class="container">
+
+        <div class="form-card">
+
+            <div class="section-title">
+
+                <h2>👤 Tell us about yourself</h2>
+
+                <p>
+                    Enter your details so FitBuddy can create
+                    a personalized plan.
+                </p>
+
+            </div>
+
+
+            <form action="/create-plan" method="post">
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+
+                        <label for="name">
+                            Full Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            placeholder="Enter your name"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="age">
+                            Age
+                        </label>
+
+                        <input
+                            type="number"
+                            id="age"
+                            name="age"
+                            placeholder="Enter your age"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="gender">
+                            Gender
+                        </label>
+
+                        <select
+                            id="gender"
+                            name="gender"
+                            required
+                        >
+
+                            <option value="">
+                                Select gender
+                            </option>
+
+                            <option value="Male">
+                                Male
+                            </option>
+
+                            <option value="Female">
+                                Female
+                            </option>
+
+                            <option value="Other">
+                                Other
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="height">
+                            Height (cm)
+                        </label>
+
+                        <input
+                            type="number"
+                            id="height"
+                            name="height"
+                            placeholder="e.g. 165"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="weight">
+                            Weight (kg)
+                        </label>
+
+                        <input
+                            type="number"
+                            id="weight"
+                            name="weight"
+                            placeholder="e.g. 60"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="goal">
+                            Fitness Goal
+                        </label>
+
+                        <select
+                            id="goal"
+                            name="goal"
+                            required
+                        >
+
+                            <option value="">
+                                Select your goal
+                            </option>
+
+                            <option value="Weight Loss">
+                                Weight Loss
+                            </option>
+
+                            <option value="Muscle Gain">
+                                Muscle Gain
+                            </option>
+
+                            <option value="General Fitness">
+                                General Fitness
+                            </option>
+
+                            <option value="Strength">
+                                Strength
+                            </option>
+
+                            <option value="Flexibility">
+                                Flexibility
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="fitness_level">
+                            Fitness Level
+                        </label>
+
+                        <select
+                            id="fitness_level"
+                            name="fitness_level"
+                            required
+                        >
+
+                            <option value="">
+                                Select your level
+                            </option>
+
+                            <option value="Beginner">
+                                Beginner
+                            </option>
+
+                            <option value="Intermediate">
+                                Intermediate
+                            </option>
+
+                            <option value="Advanced">
+                                Advanced
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="equipment">
+                            Available Equipment
+                        </label>
+
+                        <input
+                            type="text"
+                            id="equipment"
+                            name="equipment"
+                            placeholder="e.g. Dumbbells, Yoga Mat"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="button-area">
+
+                    <button
+                        type="submit"
+                        class="generate-btn"
+                    >
+                        Generate My 7-Day Plan →
+                    </button>
+
+                    <div class="button-note">
+                        Your personalized workout plan will be generated by AI.
+                    </div>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </main>
+
+
+    <section class="features">
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                🏋️
+            </div>
+
+            <h3>
+                Personalized Workouts
+            </h3>
+
+            <p>
+                Get a workout plan based on
+                your fitness level and goal.
+            </p>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                🥗
+            </div>
+
+            <h3>
+                Nutrition Guidance
+            </h3>
+
+            <p>
+                Receive practical nutrition
+                tips for your fitness goal.
+            </p>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                🤖
+            </div>
+
+            <h3>
+                AI-Powered
+            </h3>
+
+            <p>
+                Your plan can be updated based
+                on your feedback.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <footer>
+        © 2026 FitBuddy · AI Fitness Assistant
+    </footer>
+
+</body>
+</html>

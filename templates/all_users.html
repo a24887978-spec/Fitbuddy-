@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FitBuddy - Admin Panel</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f4f7f5;
+            color: #17231c;
+            min-height: 100vh;
+        }
+
+        /* NAVBAR */
+
+        .navbar {
+            background: white;
+            border-bottom: 1px solid #e5ebe7;
+            padding: 20px 7%;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: 800;
+            color: #1d8f55;
+        }
+
+        .logo span {
+            color: #17231c;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #1d8f55;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        /* HEADER */
+
+        .header {
+            text-align: center;
+            padding: 45px 20px 30px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #e4f6eb;
+            color: #1d8f55;
+
+            padding: 8px 17px;
+            border-radius: 30px;
+
+            font-size: 13px;
+            font-weight: 600;
+
+            margin-bottom: 15px;
+        }
+
+        .header h1 {
+            font-size: 38px;
+            margin-bottom: 10px;
+        }
+
+        .header h1 span {
+            color: #1d8f55;
+        }
+
+        .header p {
+            color: #718078;
+            font-size: 15px;
+        }
+
+        /* MAIN */
+
+        .container {
+            width: 92%;
+            max-width: 1200px;
+
+            margin: 0 auto 60px;
+        }
+
+        /* STATS */
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 25px;
+        }
+
+        .stat-card {
+            background: white;
+
+            border: 1px solid #e5ebe7;
+            border-radius: 16px;
+
+            padding: 20px 35px;
+
+            text-align: center;
+
+            box-shadow: 0 8px 25px rgba(25, 55, 38, 0.05);
+        }
+
+        .stat-icon {
+            font-size: 25px;
+            margin-bottom: 7px;
+        }
+
+        .stat-number {
+            font-size: 25px;
+            font-weight: 800;
+            color: #1d8f55;
+        }
+
+        .stat-label {
+            color: #718078;
+            font-size: 13px;
+            margin-top: 4px;
+        }
+
+        /* TABLE CARD */
+
+        .table-card {
+            background: white;
+
+            border: 1px solid #e5ebe7;
+            border-radius: 20px;
+
+            padding: 25px;
+
+            box-shadow: 0 10px 30px rgba(25, 55, 38, 0.06);
+
+            overflow-x: auto;
+        }
+
+        .table-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            margin-bottom: 20px;
+        }
+
+        .table-icon {
+            width: 45px;
+            height: 45px;
+
+            border-radius: 12px;
+
+            background: #e4f6eb;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 22px;
+        }
+
+        .table-header h2 {
+            font-size: 21px;
+        }
+
+        .table-header p {
+            color: #7b857f;
+            font-size: 12px;
+            margin-top: 3px;
+        }
+
+        /* TABLE */
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+
+            min-width: 850px;
+        }
+
+        th {
+            background: #f4f7f5;
+
+            color: #526057;
+
+            font-size: 12px;
+
+            text-align: left;
+
+            padding: 14px 12px;
+
+            border-bottom: 1px solid #dfe7e2;
+        }
+
+        td {
+            padding: 15px 12px;
+
+            font-size: 13px;
+
+            border-bottom: 1px solid #edf1ee;
+
+            color: #3c4841;
+        }
+
+        tr:hover td {
+            background: #f9fbfa;
+        }
+
+        .user-id {
+            font-weight: 700;
+            color: #1d8f55;
+        }
+
+        .user-name {
+            font-weight: 700;
+            color: #17231c;
+        }
+
+        .goal {
+            background: #e4f6eb;
+
+            color: #1d8f55;
+
+            padding: 6px 10px;
+
+            border-radius: 20px;
+
+            font-size: 11px;
+
+            font-weight: 600;
+
+            display: inline-block;
+        }
+
+        .fitness {
+            background: #f1f3f2;
+
+            color: #59645e;
+
+            padding: 6px 10px;
+
+            border-radius: 20px;
+
+            font-size: 11px;
+
+            font-weight: 600;
+
+            display: inline-block;
+        }
+
+        /* BACK BUTTON */
+
+        .back-section {
+            text-align: center;
+            margin-top: 28px;
+        }
+
+        .back-button {
+            display: inline-block;
+
+            padding: 12px 22px;
+
+            border: 1px solid #1d8f55;
+
+            border-radius: 10px;
+
+            color: #1d8f55;
+
+            text-decoration: none;
+
+            font-size: 14px;
+
+            font-weight: 600;
+        }
+
+        .back-button:hover {
+            background: #e4f6eb;
+        }
+
+        /* FOOTER */
+
+        footer {
+            text-align: center;
+
+            padding: 25px;
+
+            background: white;
+
+            border-top: 1px solid #e5ebe7;
+
+            color: #89938d;
+
+            font-size: 12px;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 700px) {
+
+            .navbar {
+                padding: 18px 5%;
+            }
+
+            .header h1 {
+                font-size: 30px;
+            }
+
+            .container {
+                width: 94%;
+            }
+
+            .table-card {
+                padding: 18px;
+            }
+
+            .stat-card {
+                width: 100%;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- NAVBAR -->
+
+<nav class="navbar">
+
+    <div class="logo">
+        Fit<span>Buddy</span>
+    </div>
+
+    <a href="/" class="nav-link">
+        + New Plan
+    </a>
+
+</nav>
+
+
+<!-- HEADER -->
+
+<section class="header">
+
+    <div class="badge">
+        👥 Admin Dashboard
+    </div>
+
+    <h1>
+        FitBuddy <span>Users</span>
+    </h1>
+
+    <p>
+        View all users and their fitness information.
+    </p>
+
+</section>
+
+
+<!-- MAIN -->
+
+<main class="container">
+
+
+    <!-- USER COUNT -->
+
+    <div class="stats">
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                👥
+            </div>
+
+            <div class="stat-number">
+                {{ users|length }}
+            </div>
+
+            <div class="stat-label">
+                Registered Users
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- USERS TABLE -->
+
+    <div class="table-card">
+
+
+        <div class="table-header">
+
+            <div class="table-icon">
+                👤
+            </div>
+
+            <div>
+
+                <h2>
+                    All Users
+                </h2>
+
+                <p>
+                    User fitness profiles stored in FitBuddy
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <table>
+
+            <tr>
+
+                <th>ID</th>
+
+                <th>Name</th>
+
+                <th>Age</th>
+
+                <th>Gender</th>
+
+                <th>Goal</th>
+
+                <th>Fitness Level</th>
+
+                <th>Weight</th>
+
+                <th>Height</th>
+
+            </tr>
+
+
+            {% for user in users %}
+
+            <tr>
+
+                <td class="user-id">
+                    #{{ user.id }}
+                </td>
+
+                <td class="user-name">
+                    {{ user.name }}
+                </td>
+
+                <td>
+                    {{ user.age }}
+                </td>
+
+                <td>
+                    {{ user.gender }}
+                </td>
+
+                <td>
+
+                    <span class="goal">
+                        {{ user.goal }}
+                    </span>
+
+                </td>
+
+                <td>
+
+                    <span class="fitness">
+                        {{ user.fitness_level }}
+                    </span>
+
+                </td>
+
+                <td>
+                    {{ user.weight }}
+                </td>
+
+                <td>
+                    {{ user.height }}
+                </td>
+
+            </tr>
+
+            {% endfor %}
+
+        </table>
+
+
+    </div>
+
+
+    <!-- BACK -->
+
+    <div class="back-section">
+
+        <a href="/" class="back-button">
+            ← Back to FitBuddy
+        </a>
+
+    </div>
+
+
+</main>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    © 2026 FitBuddy · AI Fitness Assistant
+
+</footer>
+
+
+</body>
+
+</html>
