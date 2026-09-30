@@ -77,7 +77,7 @@ def generate_workout(request: WorkoutRequest):
 
 
     response = client.models.generate_content(
-        model="gemini-2.5-flash",
+        model="gemini-3,8-flash",
         contents=prompt
     )
 
@@ -117,7 +117,7 @@ def nutrition(request: NutritionRequest):
 
 
     response = client.models.generate_content(
-        model="gemini-2.5-flash",
+        model="gemini-3.8-flash",
         contents=prompt
     )
 
@@ -187,7 +187,7 @@ def create_plan(
 
 
     response = client.models.generate_content(
-        model="gemini-2.5-flash",
+        model="gemini-3.8-flash",
         contents=prompt
     )
 
@@ -221,7 +221,7 @@ def create_plan(
 
 
     nutrition_response = client.models.generate_content(
-        model="gemini-2.5-flash",
+        model="gemini-3.8-flash",
         contents=nutrition_prompt
     )
 
@@ -366,7 +366,7 @@ def update_workout(
     try:
 
         response = client.models.generate_content(
-            model="gemini-2.5-flash",
+            model="gemini-3.8-flash",
             contents=prompt
         )
 
